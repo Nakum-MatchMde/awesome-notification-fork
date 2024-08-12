@@ -1,22 +1,20 @@
-import 'package:universal_io/io.dart';
 import 'dart:math';
 
-import 'package:awesome_notifications_example/common_widgets/led_light.dart';
-import 'package:awesome_notifications_example/common_widgets/seconds_slider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-
-import 'package:awesome_notifications_example/routes/routes.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
 import 'package:awesome_notifications_example/common_widgets/check_button.dart';
+import 'package:awesome_notifications_example/common_widgets/led_light.dart';
 import 'package:awesome_notifications_example/common_widgets/remarkble_text.dart';
+import 'package:awesome_notifications_example/common_widgets/seconds_slider.dart';
 import 'package:awesome_notifications_example/common_widgets/simple_button.dart';
 import 'package:awesome_notifications_example/common_widgets/text_divisor.dart';
 import 'package:awesome_notifications_example/common_widgets/text_note.dart';
+import 'package:awesome_notifications_example/notifications/notifications_util.dart';
+import 'package:awesome_notifications_example/routes/routes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:universal_io/io.dart';
 import 'package:vibration/vibration.dart';
 
 class HomePage extends StatefulWidget {
@@ -172,7 +170,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Package name'),
+            const TextDivisor(title: 'Package name'),
             RemarkableText(text: packageName, color: themeData.primaryColor),
             SimpleButton('Copy package name', onPressed: () {
               Clipboard.setData(ClipboardData(text: packageName));
@@ -224,7 +222,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Global Permission to send Notifications'),
+            const TextDivisor(title: 'Global Permission to send Notifications'),
             PermissionIndicator(
                 name: null, allowed: globalNotificationsAllowed),
             const TextNote(
@@ -253,7 +251,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Channel\'s Permissions'),
+            const TextDivisor(title: 'Channel\'s Permissions'),
             Wrap(alignment: WrapAlignment.center, children: <Widget>[
               PermissionIndicator(
                   name: 'Alerts',
@@ -301,7 +299,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Global Dangerous Permissions'),
+            const TextDivisor(title: 'Global Dangerous Permissions'),
             Wrap(alignment: WrapAlignment.center, children: <Widget>[
               PermissionIndicator(
                   name: 'Critical Alerts', allowed: isCriticalAlertsEnabled),
@@ -346,7 +344,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Basic Notifications'),
+            const TextDivisor(title: 'Basic Notifications'),
             const TextNote('A simple and fast notification to fresh start.\n\n'
                 'Tap on notification when it appears on your system tray to go to Details page.'),
             SimpleButton('Show the most basic notification',
@@ -370,13 +368,13 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Notification\'s Special Category'),
+            const TextDivisor(title: 'Notification\'s Special Category'),
             const TextNote(
                 'The notification category is a group of predefined categories '
-                    'that best describe the nature of the notification and may '
-                    'be used by some systems for ranking, delay or filter the '
-                    'notifications. Its highly recommended to correctly '
-                    'categorize your notifications..\n\n'
+                'that best describe the nature of the notification and may '
+                'be used by some systems for ranking, delay or filter the '
+                'notifications. Its highly recommended to correctly '
+                'categorize your notifications..\n\n'
                 'Slide the bar above to add some delay on notification.'),
             SecondsSlider(
                 steps: 12,
@@ -386,8 +384,8 @@ class _HomePageState extends State<HomePage> {
                 }),
             SimpleButton('Show call notification', onPressed: () {
               Vibration.vibrate(duration: 100);
-                NotificationUtils
-                    .showCallNotification(42,_secondsToCallCategory.toInt());
+              NotificationUtils.showCallNotification(
+                  42, _secondsToCallCategory.toInt());
             }),
             SimpleButton('Show alarm notification', onPressed: () {
               Vibration.vibrate(duration: 100);
@@ -402,24 +400,24 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Big Picture Notifications'),
+            const TextDivisor(title: 'Big Picture Notifications'),
             const TextNote(
                 'To show any images on notification, at any place, you need '
-                    'to include the respective source prefix before the path.'
+                'to include the respective source prefix before the path.'
                 '\n\n'
                 'Images can be defined using 4 prefix types:'
                 '\n\n'
                 '* Asset: images access through Flutter asset method.\n\t '
-                    'Example:\n\t asset://path/to/image-asset.png'
+                'Example:\n\t asset://path/to/image-asset.png'
                 '\n\n'
                 '* Network: images access through internet connection.\n\t '
-                    'Example:\n\t http(s)://url.com/to/image-asset.png'
+                'Example:\n\t http(s)://url.com/to/image-asset.png'
                 '\n\n'
                 '* File: images access through files stored on device.\n\t '
-                    'Example:\n\t file://path/to/image-asset.png'
+                'Example:\n\t file://path/to/image-asset.png'
                 '\n\n'
                 '* Resource: images access through drawable native resources.\n\t '
-                    'Example:\n\t resource://url.com/to/image-asset.png'),
+                'Example:\n\t resource://url.com/to/image-asset.png'),
             SimpleButton('Show large icon notification',
                 onPressed: () =>
                     NotificationUtils.showLargeIconNotification(2)),
@@ -451,12 +449,12 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(
+            const TextDivisor(
                 title:
-                'Emojis ${Emojis.smile_alien}${Emojis.transport_air_rocket}'),
+                    'Emojis ${Emojis.smile_alien}${Emojis.transport_air_rocket}'),
             const TextNote(
                 'To send local and push notifications with emojis, use the class Emoji concatenated with your text.\n\n'
-                    'Attention: not all Emojis work with all platforms. Please, test the specific emoji before using it in production.'),
+                'Attention: not all Emojis work with all platforms. Please, test the specific emoji before using it in production.'),
             SimpleButton('Show notification with emojis',
                 onPressed: () => NotificationUtils.showEmojiNotification(1)),
             SimpleButton(
@@ -467,12 +465,13 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Timeout Notification (Android)'),
+            const TextDivisor(title: 'Timeout Notification (Android)'),
             const TextNote(
                 'To set a timeout for notification, making it auto dismiss as it get expired, set the "timeoutAfter" property with an duration interval.\n\n'
-                    "Attention: to use this property from json payloads, use an integer positive value to represent seconds."),
+                "Attention: to use this property from json payloads, use an integer positive value to represent seconds."),
             SimpleButton('Create notification with 10 seconds timeout',
-                onPressed: () => NotificationUtils.showNotificationWithTimeout(2)),
+                onPressed: () =>
+                    NotificationUtils.showNotificationWithTimeout(2)),
             SimpleButton('Cancel notification',
                 backgroundColor: Colors.red,
                 labelColor: Colors.white,
@@ -480,69 +479,51 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(
-                title:
-                'Translations 🈳🈂️'),
+            const TextDivisor(title: 'Translations 🈳🈂️'),
             const TextNote(
                 'Notification translations allow developers to show notification '
-                    'content in different languages based on the user\'s language preference. '
-                    'The NotificationModel provides a localizations field, which is a '
-                    'Map<String, NotificationLocalization> that contains a list of '
-                    'NotificationLocalization instances for each available language, '
-                    'indexed by their respective language code (e.g., "en", "pt-br"). '
-                    'If the current language, set by the setLocalization methods or '
-                    'the current language in system settings, matches with a defined '
-                    'translation in the notification, all contents defined in the translation '
-                    'will replace the original content. Otherwise, the original '
-                    'content will be preserved.'
-            ),
+                'content in different languages based on the user\'s language preference. '
+                'The NotificationModel provides a localizations field, which is a '
+                'Map<String, NotificationLocalization> that contains a list of '
+                'NotificationLocalization instances for each available language, '
+                'indexed by their respective language code (e.g., "en", "pt-br"). '
+                'If the current language, set by the setLocalization methods or '
+                'the current language in system settings, matches with a defined '
+                'translation in the notification, all contents defined in the translation '
+                'will replace the original content. Otherwise, the original '
+                'content will be preserved.'),
             SimpleButton('Show notification using system default',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: null
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: null)),
             SimpleButton('Show notification in english 🇺🇸',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "en"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "en")),
             SimpleButton('Show notification in brazilian portuguese 🇧🇷',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "pt-br"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "pt-br")),
             SimpleButton('Show notification in portuguese 🇵🇹',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "pt"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "pt")),
             SimpleButton('Show notification in chinese 🇨🇳',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "zh"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "zh")),
             SimpleButton('Show notification in Korean 🇰🇷',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "ko"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "ko")),
             SimpleButton('Show notification in Spanish 🇪🇸',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "es"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "es")),
             SimpleButton('Show notification in Germany 🇩🇪',
-                onPressed: () => NotificationUtils.showTranslatedNotification(
-                    1, languageCode: "de"
-                )
-            ),
+                onPressed: () => NotificationUtils.showTranslatedNotification(1,
+                    languageCode: "de")),
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Locked Notifications (onGoing - Android)'),
+            const TextDivisor(
+                title: 'Locked Notifications (onGoing - Android)'),
             const TextNote(
                 'To send local or push locked notification, that users cannot dismiss it swiping it, set the "locked" property to true.\n\n'
-                    "Attention: Notification's content locked property has priority over the Channel's one."),
+                "Attention: Notification's content locked property has priority over the Channel's one."),
             SimpleButton('Send/Update the locked notification',
                 onPressed: () => NotificationUtils.showLockedNotification(2)),
             SimpleButton('Send/Update the unlocked notification',
@@ -550,8 +531,9 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Android Foreground Service'),
-            const TextNote('This feature is only available for Android devices.'),
+            const TextDivisor(title: 'Android Foreground Service'),
+            const TextNote(
+                'This feature is only available for Android devices.'),
             SimpleButton('Start foreground service',
                 onPressed: () =>
                     NotificationUtils.startForegroundServiceNotification(9999)),
@@ -561,7 +543,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Notification Importance (Priority)'),
+            const TextDivisor(title: 'Notification Importance (Priority)'),
             const TextNote(
                 'To change the importance level of notifications, please set the importance in the respective channel.\n\n'
                 'The possible importance levels are the following:\n\n'
@@ -596,7 +578,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Action Buttons'),
+            const TextDivisor(title: 'Action Buttons'),
             const TextNote('Action buttons can be used in four types:'
                 '\n\n'
                 '* Default: after user taps, the notification bar is closed and an action event is fired.'
@@ -640,7 +622,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Badge Indicator'),
+            const TextDivisor(title: 'Badge Indicator'),
             const TextNote(
                 '"Badge" is an indicator of how many notifications (or anything else) that have not been viewed by the user (iOS and some versions of Android) '
                 'or even a reminder of new things arrived (Android native).\n\n'
@@ -691,7 +673,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Vibration Patterns'),
+            const TextDivisor(title: 'Vibration Patterns'),
             const TextNote(
                 'The NotificationModel plugin has 3 vibration patters as example, but you perfectly can create your own patter.'
                 '\n'
@@ -719,7 +701,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Notification Channels'),
+            const TextDivisor(title: 'Notification Channels'),
             const TextNote(
                 'The channel is a category identifier which notifications are pre-configured and organized before sent.'
                 '\n\n'
@@ -741,10 +723,11 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'LEDs and Colors'),
+            const TextDivisor(title: 'LEDs and Colors'),
             const TextNote(
                 'The led colors and the default layout color are independent'),
-            const TextNote('Some devices need to be locked to activate LED lights.'
+            const TextNote(
+                'Some devices need to be locked to activate LED lights.'
                 '\n'
                 'If that is your case, please delay the notification to give to you enough time.'),
             CheckButton('Delay notifications for 5 seconds', delayLEDTests,
@@ -775,7 +758,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Wake Up Locked Screen Notifications'),
+            const TextDivisor(title: 'Wake Up Locked Screen Notifications'),
             const TextNote(
                 'Wake Up Locked Screen notifications are notifications that can wake up the device screen to call the user attention, if the device is on lock screen.\n\n'
                 'To enable this feature on Android, is necessary to add the WAKE_LOCK permission into your AndroidManifest.xml file. For iOS, this is the default behavior for high priority channels.'),
@@ -796,7 +779,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Full Screen Intent Notifications'),
+            const TextDivisor(title: 'Full Screen Intent Notifications'),
             const TextNote(
                 'Full-Screen Intents are notifications that can launch in full-screen mode. They are indicate since Android 9 to receiving calls and alarm features.\n\n'
                 'To enable this feature on Android, is necessary to add the USE_FULL_SCREEN_INTENT permission into your AndroidManifest.xml file and explicit request the user permission since Android 11. For iOS, this option has no effect.'),
@@ -811,7 +794,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Notification Sound'),
+            const TextDivisor(title: 'Notification Sound'),
             SimpleButton('Show notification with custom sound',
                 onPressed: () =>
                     NotificationUtils.showCustomSoundNotification(6)),
@@ -822,7 +805,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Silenced Notifications'),
+            const TextDivisor(title: 'Silenced Notifications'),
             SimpleButton('Show notification with no sound',
                 onPressed: () =>
                     NotificationUtils.showNotificationWithNoSound(7)),
@@ -833,11 +816,12 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Scheduled Notifications'),
+            const TextDivisor(title: 'Scheduled Notifications'),
             SimpleButton('Schedule notification with local time zone',
                 onPressed: () async {
-              DateTime? pickedDate =
-                  await NotificationUtils.pickScheduleDate(context, isUtc: false);
+              DateTime? pickedDate = await NotificationUtils.pickScheduleDate(
+                  context,
+                  isUtc: false);
               if (pickedDate != null) {
                 NotificationUtils.showNotificationAtSchedulePreciseDate(
                     pickedDate);
@@ -845,8 +829,9 @@ class _HomePageState extends State<HomePage> {
             }),
             SimpleButton('Schedule notification with utc time zone',
                 onPressed: () async {
-              DateTime? pickedDate =
-                  await NotificationUtils.pickScheduleDate(context, isUtc: true);
+              DateTime? pickedDate = await NotificationUtils.pickScheduleDate(
+                  context,
+                  isUtc: true);
               if (pickedDate != null) {
                 NotificationUtils.showNotificationAtSchedulePreciseDate(
                     pickedDate);
@@ -874,12 +859,13 @@ class _HomePageState extends State<HomePage> {
                   NotificationUtils.repeatMinuteNotificationOClock(),
             ),
             SimpleButton('Get current time zone reference name',
-                onPressed: () => NotificationUtils.getCurrentTimeZone()
-                    .then((timeZone) => showDialog(
+                onPressed: () => NotificationUtils.getCurrentTimeZone().then(
+                    (timeZone) => showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
                             backgroundColor: const Color(0xfffbfbfb),
-                            title: const Center(child: Text('Current Time Zone')),
+                            title:
+                                const Center(child: Text('Current Time Zone')),
                             content: SizedBox(
                                 height: 80.0,
                                 child: Center(
@@ -933,29 +919,27 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Get Next Schedule Date'),
+            const TextDivisor(title: 'Get Next Schedule Date'),
             const TextNote(
                 'This is a simple example to show how to query the next valid '
-                    'schedule date. The date components follow the ISO 8601 '
-                    'standard.'),
-            SimpleButton(
-                'Get next Monday after date',
-                onPressed: () => NotificationUtils.getNextValidMonday(context)
-            ),
+                'schedule date. The date components follow the ISO 8601 '
+                'standard.'),
+            SimpleButton('Get next Monday after date',
+                onPressed: () => NotificationUtils.getNextValidMonday(context)),
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Media Player'),
+            const TextDivisor(title: 'Media Player'),
             const TextNote(
                 'The media player its just emulated and was built to help me to '
-                    'check if the notification media control contemplates the '
-                    'dev demands, such as sync state, etc.'
+                'check if the notification media control contemplates the '
+                'dev demands, such as sync state, etc.'
                 '\n\n'
                 'The layout itself was built just for fun, you can use it as '
-                    'you wish for.'
+                'you wish for.'
                 '\n\n'
                 'ATTENTION: There is no media reproducing in any place, its '
-                    'just a Timer to pretend a time passing.'),
+                'just a Timer to pretend a time passing.'),
             SimpleButton('Show media player',
                 onPressed: () =>
                     Navigator.pushNamed(context, PAGE_MEDIA_DETAILS)),
@@ -966,17 +950,18 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Progress Notifications'),
-            SimpleButton('Show indeterminate progress notification (Only for Android)',
+            const TextDivisor(title: 'Progress Notifications'),
+            SimpleButton(
+                'Show indeterminate progress notification (Only for Android)',
                 onPressed: isAndroid
-                    ? () => NotificationUtils.showIndeterminateProgressNotification(9)
-                    : null
-            ),
+                    ? () =>
+                        NotificationUtils.showIndeterminateProgressNotification(
+                            9)
+                    : null),
             SimpleButton('Show progress notification - updates every second',
                 onPressed: isAndroid
                     ? () => NotificationUtils.showProgressNotification(9)
-                    : null
-            ),
+                    : null),
             SimpleButton('Cancel notification',
                 backgroundColor: Colors.red,
                 labelColor: Colors.white,
@@ -984,7 +969,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Inbox Notifications'),
+            const TextDivisor(title: 'Inbox Notifications'),
             SimpleButton(
               'Show Inbox notification',
               onPressed: () => NotificationUtils.showInboxNotification(10),
@@ -996,7 +981,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Messaging Notifications'),
+            const TextDivisor(title: 'Messaging Notifications'),
             SimpleButton('Simulate Chat Messaging notification',
                 onPressed: () => NotificationUtils.simulateChatConversation(
                     groupKey: 'jhonny_group')),
@@ -1009,7 +994,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            TextDivisor(title: 'Grouped Notifications'),
+            const TextDivisor(title: 'Grouped Notifications'),
             SimpleButton('Show grouped notifications',
                 onPressed: () =>
                     NotificationUtils.showGroupedNotifications('grouped')),
@@ -1021,7 +1006,7 @@ class _HomePageState extends State<HomePage> {
                         'grouped')),
 
             /* ******************************************************************** */
-            TextDivisor(),
+            const TextDivisor(),
             SimpleButton('Dismiss all notifications by channel key',
                 backgroundColor: Colors.red,
                 labelColor: Colors.white,
@@ -1074,8 +1059,7 @@ class _HomePageState extends State<HomePage> {
 
 class PermissionIndicator extends StatelessWidget {
   const PermissionIndicator(
-      {Key? key, required this.name, required this.allowed})
-      : super(key: key);
+      {super.key, required this.name, required this.allowed});
 
   final String? name;
   final bool allowed;

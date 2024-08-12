@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RemarkableText extends StatelessWidget {
-
   final String text;
   final Color? color;
 
-  const RemarkableText({Key? key, required this.text, this.color}) : super(key: key);
+  const RemarkableText({super.key, required this.text, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +15,8 @@ class RemarkableText extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(
               text: text,
-              style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 18)
-          ),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: color, fontSize: 18)),
         ),
       ),
     );

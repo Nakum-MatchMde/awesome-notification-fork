@@ -65,14 +65,12 @@ class NotificationCalendar extends NotificationSchedule {
     this.weekOfMonth,
     this.weekOfYear,
     String? timeZone,
-    bool allowWhileIdle = false,
-    bool preciseAlarm = true,
-    bool repeats = false,
+    super.allowWhileIdle,
+    super.preciseAlarm = true,
+    super.repeats,
   }) : super(
-            timeZone: timeZone ?? AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
-            repeats: repeats,
-            preciseAlarm: preciseAlarm) {
+            timeZone:
+                timeZone ?? AwesomeNotifications.localTimeZoneIdentifier) {
     if (weekOfMonth != null) {
       throw UnimplementedError("weekOfMonth is not fully implemented yet");
     }
@@ -81,16 +79,13 @@ class NotificationCalendar extends NotificationSchedule {
   /// Initialize a notification schedule calendar based on a date object
   NotificationCalendar.fromDate(
       {required DateTime date,
-      bool allowWhileIdle = false,
-      bool repeats = false,
-      bool preciseAlarm = false})
+      super.allowWhileIdle,
+      super.repeats,
+      super.preciseAlarm})
       : super(
             timeZone: date.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
-                : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
-            repeats: repeats,
-            preciseAlarm: preciseAlarm) {
+                : AwesomeNotifications.localTimeZoneIdentifier) {
     year = date.year;
     month = date.month;
     day = date.day;

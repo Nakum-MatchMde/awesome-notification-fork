@@ -13,14 +13,11 @@ class NotificationInterval extends NotificationSchedule {
   NotificationInterval(
       {required this.interval,
       String? timeZone,
-      bool allowWhileIdle = false,
-      bool repeats = false,
-      bool preciseAlarm = true})
+      super.allowWhileIdle,
+      super.repeats,
+      super.preciseAlarm = true})
       : super(
-            timeZone: timeZone ?? AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
-            repeats: repeats,
-            preciseAlarm: preciseAlarm);
+            timeZone: timeZone ?? AwesomeNotifications.localTimeZoneIdentifier);
 
   @override
   NotificationInterval? fromMap(Map<String, dynamic> mapData) {

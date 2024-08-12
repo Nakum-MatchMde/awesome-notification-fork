@@ -42,9 +42,9 @@ class NotificationAndroidCrontab extends NotificationSchedule {
       List<DateTime>? preciseSchedules,
       String? crontabExpression,
       String? timeZone,
-      bool allowWhileIdle = false,
-      bool repeats = false,
-      bool preciseAlarm = true})
+      super.allowWhileIdle,
+      super.repeats,
+      super.preciseAlarm = true})
       : _initialDateTime = AwesomeAssertUtils.getValueOrDefault<DateTime>(
             NOTIFICATION_INITIAL_DATE_TIME, initialDateTime),
         _expirationDateTime = AwesomeAssertUtils.getValueOrDefault<DateTime>(
@@ -55,21 +55,15 @@ class NotificationAndroidCrontab extends NotificationSchedule {
         _crontabExpression = AwesomeAssertUtils.getValueOrDefault<String>(
             NOTIFICATION_CRONTAB_EXPRESSION, crontabExpression),
         super(
-            timeZone: timeZone ?? AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
-            repeats: repeats,
-            preciseAlarm: preciseAlarm);
+            timeZone: timeZone ?? AwesomeNotifications.localTimeZoneIdentifier);
 
   /// Initialize a notification crontab schedule based on a date reference
   NotificationAndroidCrontab.fromDate(
-      {required DateTime date,
-      int initialSecond = 0,
-      bool allowWhileIdle = false})
+      {required DateTime date, int initialSecond = 0, super.allowWhileIdle})
       : super(
             timeZone: date.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _initialDateTime = date;
     _crontabExpression = CronHelper().atDate(referenceDateTime: date);
@@ -77,12 +71,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at year based on a date reference
   NotificationAndroidCrontab.yearly(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().yearly(referenceDateTime: referenceDateTime);
@@ -90,12 +83,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at month based on a date reference
   NotificationAndroidCrontab.monthly(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().monthly(referenceDateTime: referenceDateTime);
@@ -103,12 +95,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at week based on a date reference
   NotificationAndroidCrontab.weekly(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().weekly(referenceDateTime: referenceDateTime);
@@ -116,12 +107,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at day based on a date reference
   NotificationAndroidCrontab.daily(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().daily(referenceDateTime: referenceDateTime);
@@ -129,12 +119,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at hour based on a date reference
   NotificationAndroidCrontab.hourly(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().hourly(referenceDateTime: referenceDateTime);
@@ -142,12 +131,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only once at every minute based on a date reference
   NotificationAndroidCrontab.minutely(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().minutely(initialSecond: referenceDateTime.second);
@@ -155,12 +143,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only on workweek days based on a date reference
   NotificationAndroidCrontab.workweekDay(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().workweekDay(referenceDateTime: referenceDateTime);
@@ -168,12 +155,11 @@ class NotificationAndroidCrontab extends NotificationSchedule {
 
   /// Generates a Cron expression to be played only on weekend days based on a date reference
   NotificationAndroidCrontab.weekendDay(
-      {required DateTime referenceDateTime, bool allowWhileIdle = false})
+      {required DateTime referenceDateTime, super.allowWhileIdle})
       : super(
             timeZone: referenceDateTime.isUtc
                 ? AwesomeNotifications.utcTimeZoneIdentifier
                 : AwesomeNotifications.localTimeZoneIdentifier,
-            allowWhileIdle: allowWhileIdle,
             repeats: false) {
     _crontabExpression =
         CronHelper().weekendDay(referenceDateTime: referenceDateTime);

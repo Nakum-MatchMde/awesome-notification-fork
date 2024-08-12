@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
 import '../definitions.dart';
-import '../enumerators/action_type.dart';
-import '../enumerators/notification_category.dart';
 import '../enumerators/notification_layout.dart';
 import '../utils/assert_utils.dart';
 import 'base_notification_content.dart';
@@ -67,31 +63,31 @@ class NotificationContent extends BaseNotificationContent {
   }
 
   NotificationContent(
-      {required int id,
-      required String channelKey,
-      String? title,
-      String? body,
-      String? groupKey,
-      String? summary,
-      String? icon,
-      String? largeIcon,
-      String? bigPicture,
-      String? customSound,
-      bool showWhen = true,
-      bool wakeUpScreen = false,
-      bool fullScreenIntent = false,
-      bool criticalAlert = false,
-      bool roundedLargeIcon = false,
-      bool roundedBigPicture = false,
-      bool autoDismissible = true,
-      Color? color,
-      Duration? timeoutAfter,
-      Duration? chronometer,
-      Color? backgroundColor,
-      ActionType actionType = ActionType.Default,
+      {required int super.id,
+      required String super.channelKey,
+      super.title,
+      super.body,
+      super.groupKey,
+      super.summary,
+      super.icon,
+      super.largeIcon,
+      super.bigPicture,
+      super.customSound,
+      super.showWhen,
+      super.wakeUpScreen,
+      super.fullScreenIntent,
+      super.criticalAlert,
+      super.roundedLargeIcon,
+      super.roundedBigPicture,
+      super.autoDismissible,
+      super.color,
+      super.timeoutAfter,
+      super.chronometer,
+      super.backgroundColor,
+      super.actionType,
       NotificationLayout notificationLayout = NotificationLayout.Default,
-      Map<String, String?>? payload,
-      NotificationCategory? category,
+      super.payload,
+      super.category,
       bool hideLargeIconOnExpand = false,
       bool locked = false,
       int? progress,
@@ -112,32 +108,7 @@ class NotificationContent extends BaseNotificationContent {
         _locked = locked,
         _duration = duration,
         _playState = playState,
-        _playbackSpeed = playbackSpeed,
-        super(
-            id: id,
-            channelKey: channelKey,
-            groupKey: groupKey,
-            title: title,
-            body: body,
-            summary: summary,
-            wakeUpScreen: wakeUpScreen,
-            fullScreenIntent: fullScreenIntent,
-            category: category,
-            criticalAlert: criticalAlert,
-            showWhen: showWhen,
-            payload: payload,
-            icon: icon,
-            timeoutAfter: timeoutAfter,
-            chronometer: chronometer,
-            largeIcon: largeIcon,
-            bigPicture: bigPicture,
-            customSound: customSound,
-            autoDismissible: autoDismissible,
-            color: color,
-            actionType: actionType,
-            backgroundColor: backgroundColor,
-            roundedBigPicture: roundedBigPicture,
-            roundedLargeIcon: roundedLargeIcon);
+        _playbackSpeed = playbackSpeed;
 
   @override
   NotificationContent? fromMap(Map<String, dynamic> mapData) {
@@ -156,8 +127,8 @@ class NotificationContent extends BaseNotificationContent {
         AwesomeAssertUtils.extractValue<int>(NOTIFICATION_DURATION, mapData);
     _playState =
         AwesomeAssertUtils.extractValue<int>(NOTIFICATION_PLAY_STATE, mapData);
-    _playbackSpeed =
-        AwesomeAssertUtils.extractValue<double>(NOTIFICATION_PLAYBACK_SPEED, mapData);
+    _playbackSpeed = AwesomeAssertUtils.extractValue<double>(
+        NOTIFICATION_PLAYBACK_SPEED, mapData);
 
     _notificationLayout = AwesomeAssertUtils.extractEnum<NotificationLayout>(
         NOTIFICATION_LAYOUT, mapData, NotificationLayout.values);
