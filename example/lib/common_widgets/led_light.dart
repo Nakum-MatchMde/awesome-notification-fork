@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LedLight extends StatelessWidget {
-
   final bool isOn;
 
   const LedLight(this.isOn, {super.key});

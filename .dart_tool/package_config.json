@@ -117,9 +117,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/trootech/.pub-cache/hosted/pub.dev/flutter_lints-3.0.1",
+      "rootUri": "file:///Users/trootech/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.1"
     },
     {
       "name": "flutter_test",
@@ -201,7 +201,7 @@
     },
     {
       "name": "mocktail",
-      "rootUri": "file:///Users/trootech/.pub-cache/hosted/pub.dev/mocktail-1.0.3",
+      "rootUri": "file:///Users/trootech/.pub-cache/hosted/pub.dev/mocktail-1.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -314,7 +314,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-08-12T05:39:17.334893Z",
+  "generated": "2024-08-12T07:28:26.848498Z",
   "generator": "pub",
   "generatorVersion": "3.4.4",
   "flutterRoot": "file:///Users/trootech/fvm/versions/3.22.3",

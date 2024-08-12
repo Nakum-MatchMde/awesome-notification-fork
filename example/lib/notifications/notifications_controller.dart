@@ -5,15 +5,9 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_example/main_complete.dart';
 import 'package:awesome_notifications_example/notifications/notifications_util.dart';
 import 'package:awesome_notifications_example/routes/routes.dart';
-import 'package:awesome_notifications_example/utils/common_functions.dart' if (dart.library.html)
-'package:awesome_notifications_example/utils/common_web_functions.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart'
     if (dart.library.html) 'package:awesome_notifications_example/utils/common_web_functions.dart';
 import 'package:awesome_notifications_example/utils/media_player_central.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
-import 'package:awesome_notifications/awesome_notifications.dart';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -279,8 +273,7 @@ class NotificationsController {
 
     // This initialization only happens on main isolate
     IsolateNameServer.registerPortWithName(
-        receivePort!.sendPort,
-        'notification_action_port');
+        receivePort!.sendPort, 'notification_action_port');
   }
 
   // ***************************************************************
@@ -291,7 +284,8 @@ class NotificationsController {
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {
-    var message = 'Notification created on ${receivedNotification.createdLifeCycle?.name}';
+    var message =
+        'Notification created on ${receivedNotification.createdLifeCycle?.name}';
     print(message);
     Fluttertoast.showToast(
         msg: message,
@@ -304,8 +298,10 @@ class NotificationsController {
   @pragma("vm:entry-point")
   static Future<void> onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    var message1 = 'Notification displayed on ${receivedNotification.displayedLifeCycle?.name}';
-    var message2 = 'Notification displayed at ${receivedNotification.displayedDate}';
+    var message1 =
+        'Notification displayed on ${receivedNotification.displayedLifeCycle?.name}';
+    var message2 =
+        'Notification displayed at ${receivedNotification.displayedDate}';
 
     print(message1);
     print(message2);
@@ -320,7 +316,8 @@ class NotificationsController {
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
       ReceivedAction receivedAction) async {
-    var message = 'Notification dismissed on ${receivedAction.dismissedLifeCycle?.name}';
+    var message =
+        'Notification dismissed on ${receivedAction.dismissedLifeCycle?.name}';
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_SHORT,
@@ -337,25 +334,23 @@ class NotificationsController {
     } else {
       print(
           'onActionReceivedMethod was called inside a parallel dart isolate, where receivePort was never initialized.');
-      SendPort? sendPort = IsolateNameServer
-          .lookupPortByName('notification_action_port');
+      SendPort? sendPort =
+          IsolateNameServer.lookupPortByName('notification_action_port');
 
       if (sendPort != null) {
-        print('Redirecting the execution to main isolate process in listening...');
+        print(
+            'Redirecting the execution to main isolate process in listening...');
         dynamic serializedData = receivedAction.toMap();
         sendPort.send(serializedData);
       }
     }
-  }
-
-
     await onActionReceivedMethodImpl(receivedAction);
   }
 
   static Future<void> onActionReceivedMethodImpl(
       ReceivedAction receivedAction) async {
-    var message = 'Action ${receivedAction.actionType?.name} received on ${
-        receivedAction.actionLifeCycle?.name}';
+    var message =
+        'Action ${receivedAction.actionType?.name} received on ${receivedAction.actionLifeCycle?.name}';
     print(message);
 
     // Always ensure that all plugins was initialized
@@ -369,9 +364,8 @@ class NotificationsController {
     // UI/visual elements
     if (receivedAction.actionType != ActionType.SilentBackgroundAction) {
       Fluttertoast.showToast(
-          msg:
-              '${isSilentAction ? 'Silent action' : 'Action'}'
-                  ' received on ${receivedAction.actionLifeCycle?.name}',
+          msg: '${isSilentAction ? 'Silent action' : 'Action'}'
+              ' received on ${receivedAction.actionLifeCycle?.name}',
           toastLength: Toast.LENGTH_SHORT,
           backgroundColor: isSilentAction ? Colors.blueAccent : App.mainColor,
           gravity: ToastGravity.BOTTOM);
@@ -379,7 +373,8 @@ class NotificationsController {
 
     switch (receivedAction.channelKey) {
       case 'call_channel':
-        if (receivedAction.actionLifeCycle != NotificationLifeCycle.Terminated){
+        if (receivedAction.actionLifeCycle !=
+            NotificationLifeCycle.Terminated) {
           await receiveCallNotificationAction(receivedAction);
         }
         break;
@@ -475,7 +470,8 @@ class NotificationsController {
       );
     } else {
       loadSingletonPage(App.navigatorKey.currentState,
-          targetPage: PAGE_NOTIFICATION_DETAILS, receivedAction: receivedAction);
+          targetPage: PAGE_NOTIFICATION_DETAILS,
+          receivedAction: receivedAction);
     }
   }
 
@@ -509,8 +505,8 @@ class NotificationsController {
   }
 
   static Future<void> interceptInitialCallActionRequest() async {
-    ReceivedAction? receivedAction = await AwesomeNotifications()
-        .getInitialNotificationAction();
+    ReceivedAction? receivedAction =
+        await AwesomeNotifications().getInitialNotificationAction();
 
     if (receivedAction?.channelKey == 'call_channel') {
       initialCallAction = receivedAction;

@@ -1,16 +1,6 @@
-import 'package:universal_io/io.dart';
 import 'dart:math';
 
-import 'package:awesome_notifications_example/common_widgets/led_light.dart';
-import 'package:awesome_notifications_example/common_widgets/seconds_slider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-
-import 'package:awesome_notifications_example/routes/routes.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
 import 'package:awesome_notifications_example/common_widgets/check_button.dart';
 import 'package:awesome_notifications_example/common_widgets/led_light.dart';
 import 'package:awesome_notifications_example/common_widgets/remarkble_text.dart';
@@ -180,7 +170,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             /* ******************************************************************** */
 
-            const TextDivisor(title: 'Package name'),
+            TextDivisor(title: 'Package name'),
             RemarkableText(text: packageName, color: themeData.primaryColor),
             SimpleButton('Copy package name', onPressed: () {
               Clipboard.setData(ClipboardData(text: packageName));
@@ -232,7 +222,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            const TextDivisor(title: 'Global Permission to send Notifications'),
+            TextDivisor(title: 'Global Permission to send Notifications'),
             PermissionIndicator(
                 name: null, allowed: globalNotificationsAllowed),
             const TextNote(
@@ -261,7 +251,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            const TextDivisor(title: 'Channel\'s Permissions'),
+            TextDivisor(title: 'Channel\'s Permissions'),
             Wrap(alignment: WrapAlignment.center, children: <Widget>[
               PermissionIndicator(
                   name: 'Alerts',
@@ -309,7 +299,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            const TextDivisor(title: 'Global Dangerous Permissions'),
+            TextDivisor(title: 'Global Dangerous Permissions'),
             Wrap(alignment: WrapAlignment.center, children: <Widget>[
               PermissionIndicator(
                   name: 'Critical Alerts', allowed: isCriticalAlertsEnabled),
@@ -354,7 +344,7 @@ class _HomePageState extends State<HomePage> {
 
             /* ******************************************************************** */
 
-            const TextDivisor(title: 'Basic Notifications'),
+            TextDivisor(title: 'Basic Notifications'),
             const TextNote('A simple and fast notification to fresh start.\n\n'
                 'Tap on notification when it appears on your system tray to go to Details page.'),
             SimpleButton('Show the most basic notification',
@@ -503,29 +493,37 @@ class _HomePageState extends State<HomePage> {
                 'will replace the original content. Otherwise, the original '
                 'content will be preserved.'),
             SimpleButton('Show notification using system default',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: null)),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: null)),
             SimpleButton('Show notification in english 🇺🇸',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "en")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "en")),
             SimpleButton('Show notification in brazilian portuguese 🇧🇷',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "pt-br")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "pt-br")),
             SimpleButton('Show notification in portuguese 🇵🇹',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "pt")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "pt")),
             SimpleButton('Show notification in chinese 🇨🇳',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "zh")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "zh")),
             SimpleButton('Show notification in Korean 🇰🇷',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "ko")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "ko")),
             SimpleButton('Show notification in Spanish 🇪🇸',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "es")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "es")),
             SimpleButton('Show notification in Germany 🇩🇪',
-                onPressed: () => NotificationUtils.showTranslatedNotification(1,
-                    languageCode: "de")),
+                onPressed: () =>
+                    NotificationUtils.setLocalizationForNotification(
+                        languageCode: "de")),
 
             /* ******************************************************************** */
 
@@ -616,10 +614,10 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () =>
                     NotificationUtils.showBigPictureNotificationActionButtons(
                         3)),
-            SimpleButton('Show Notification\nwith Authentication Required Action',
-                onPressed: () =>
-                    NotificationUtils.showNotificationWithAuthenticatedActionButtons(
-                        3)),
+            SimpleButton(
+                'Show Notification\nwith Authentication Required Action',
+                onPressed: () => NotificationUtils
+                    .showNotificationWithAuthenticatedActionButtons(3)),
             SimpleButton(
                 'Show Big picture notification\nwith Reply and Action button',
                 onPressed: () => NotificationUtils
@@ -1036,8 +1034,7 @@ class _HomePageState extends State<HomePage> {
             SimpleButton('Cancel schedule by id',
                 backgroundColor: Colors.red,
                 labelColor: Colors.white,
-                onPressed: () =>
-                    NotificationUtils.cancelSchedule(1)),
+                onPressed: () => NotificationUtils.cancelSchedule(1)),
             SimpleButton('Cancel all schedules by channel key',
                 backgroundColor: Colors.red,
                 labelColor: Colors.white,

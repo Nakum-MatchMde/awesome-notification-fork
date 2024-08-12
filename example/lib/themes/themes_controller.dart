@@ -19,15 +19,12 @@ class ThemesController {
       focusColor: Colors.blueAccent,
       disabledColor: Colors.grey,
 
-      backgroundColor: Colors.blueGrey.shade400,
-
       appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0,
           iconTheme: IconThemeData(
             color: App.mainColor,
-          )
-      ),
+          )),
 
       fontFamily: 'Robot',
 

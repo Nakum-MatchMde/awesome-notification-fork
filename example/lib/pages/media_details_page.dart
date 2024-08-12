@@ -1,18 +1,13 @@
 import 'dart:math';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_example/models/media_model.dart';
 import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart';
 import 'package:awesome_notifications_example/utils/media_player_central.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:palette_generator/palette_generator.dart';
-import 'package:awesome_notifications_example/models/media_model.dart';
-import 'package:awesome_notifications_example/utils/media_player_central.dart';
 
 class MediaDetailsPage extends StatefulWidget {
   const MediaDetailsPage({super.key});
@@ -91,21 +86,13 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
           break;
 
         case MediaLifeCycle.paused:
-          NotificationUtils.updateNotificationMediaPlayer(
-              100,
-              media,
-              durationPlayed ?? Duration.zero,
-              NotificationPlayState.paused
-          );
+          NotificationUtils.updateNotificationMediaPlayer(100, media,
+              durationPlayed ?? Duration.zero, NotificationPlayState.paused);
           break;
 
         case MediaLifeCycle.playing:
-          NotificationUtils.updateNotificationMediaPlayer(
-              100,
-              media,
-              durationPlayed ?? Duration.zero,
-              NotificationPlayState.playing
-          );
+          NotificationUtils.updateNotificationMediaPlayer(100, media,
+              durationPlayed ?? Duration.zero, NotificationPlayState.playing);
           break;
       }
     });
@@ -469,7 +456,6 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
                   },
                   onChangeEnd: (value) {
                     isDragging = false;
-                    isDraggin = false;
                     setState(() {
                       MediaPlayerCentral.goTo(durationPlayed!);
                     });

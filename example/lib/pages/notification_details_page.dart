@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/services.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NotificationDetailsPage extends StatefulWidget {
@@ -220,14 +219,14 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
                           children: <Widget>[
                             Text(
                               'ReceivedNotification details:',
-                              style: themeData.textTheme.titleMedium
-                                  ?.copyWith(color: themeData.colorScheme.onSurface),
+                              style: themeData.textTheme.titleMedium?.copyWith(
+                                  color: themeData.colorScheme.onSurface),
                             ),
                             const SizedBox(height: 20),
                             Text(
                               widget.results,
-                              style: themeData.textTheme.bodyMedium
-                                  ?.copyWith(color: themeData.colorScheme.onSurface),
+                              style: themeData.textTheme.bodyMedium?.copyWith(
+                                  color: themeData.colorScheme.onSurface),
                             ),
                           ],
                         )),

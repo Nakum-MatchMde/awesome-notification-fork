@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RemarkableText extends StatelessWidget {
-
   final String text;
   final Color? color;
 
