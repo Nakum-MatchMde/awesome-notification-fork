@@ -82,6 +82,8 @@ const EVENT_NOTIFICATION_DISPLAYED = 'notificationDisplayed';
 const EVENT_NOTIFICATION_DISMISSED = 'notificationDismissed';
 const EVENT_DEFAULT_ACTION = 'defaultAction';
 const EVENT_SILENT_ACTION = 'silentAction';
+const EVENT_USER_COME_FROM_NOTIFICATION_SETTING =
+    'userComeFromNotificationSettings';
 
 const CHANNEL_METHOD_NOTIFICATION_AT_LAUNCH = 'notificationAtLaunch';
 
@@ -334,3 +336,35 @@ class Definitions {
     NOTIFICATION_AUTHENTICATION_REQUIRED: false,
   };
 }
+
+/*
+  State of PlaybackStateCompat
+  https://developer.android.com/reference/kotlin/android/support/v4/media/session/PlaybackStateCompat
+ */
+/// This is the default playback state and indicates that no media has been added yet, or the performer has been reset and has no content to play.
+const PLAY_STATE_NONE = 0;
+/// State indicating this item is currently stopped.
+const PLAY_STATE_STOPPED = 1;
+/// State indicating this item is currently paused.
+const PLAY_STATE_PAUSED = 2;
+/// State indicating this item is currently playing.
+const PLAY_STATE_PLAYING = 3;
+/// State indicating this item is currently fast forwarding.
+const PLAY_STATE_FAST_FORWARDING = 4;
+/// State indicating this item is currently rewinding.
+const PLAY_STATE_REWINDING = 5;
+/// State indicating this item is currently buffering and will begin playing when enough data has buffered.
+const PLAY_STATE_BUFFERING = 6;
+/// State indicating this item is currently in an error state. The error code should also be set when entering this state.
+const PLAY_STATE_ERROR = 7;
+/// State indicating the class doing playback is currently connecting to a route. Depending on the implementation you may return to the previous state when the connection finishes or enter STATE_NONE. If the connection failed STATE_ERROR should be used.
+/// On devices earlier than API 21, this will appear as STATE_BUFFERING
+const PLAY_STATE_CONNECTING = 8;
+/// State indicating the player is currently skipping to the previous item.
+const PLAY_STATE_SKIPPING_TO_PREVIOUS = 9;
+/// State indicating the player is currently skipping to the next item.
+const PLAY_STATE_SKIPPING_TO_NEXT = 10;
+/// State indicating the player is currently skipping to a specific item in the queue.
+const PLAY_STATE_SKIPPING_TO_QUEUE_ITEM = 11;
+/// Use this value for the position to indicate the position is not known.
+const PLAY_PLAYBACK_POSITION_UNKNOWN = -1;

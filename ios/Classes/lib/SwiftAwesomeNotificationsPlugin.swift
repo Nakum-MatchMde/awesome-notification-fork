@@ -1,3 +1,5 @@
+
+#if !ACTION_EXTENSION
 import UIKit
 import Flutter
 import UserNotifications
@@ -220,11 +222,11 @@ public class SwiftAwesomeNotificationsPlugin:
                 case Definitions.CHANNEL_METHOD_DISMISS_NOTIFICATIONS_BY_CHANNEL_KEY:
                     try channelMethodDismissNotificationsByChannelKey(call: call, result: result)
                     return
-                
+
                 case Definitions.CHANNEL_METHOD_CANCEL_SCHEDULE:
                     try channelMethodCancelSchedule(call: call, result: result)
                     return
-                    
+
                 case Definitions.CHANNEL_METHOD_CANCEL_SCHEDULES_BY_CHANNEL_KEY:
                     try channelMethodCancelSchedulesByChannelKey(call: call, result: result)
                     return
@@ -1055,3 +1057,4 @@ public class SwiftAwesomeNotificationsPlugin:
         result(success)
     }
 }
+#endif

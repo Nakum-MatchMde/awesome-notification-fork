@@ -290,6 +290,7 @@ public class DartBackgroundExecutor extends BackgroundExecutor implements Method
             actionData.put(
                     Definitions.ACTION_HANDLE,
                     actionCallbackHandle);
+//                    silentCallbackHandle);
 
             // Handle the message event in Dart.
             backgroundChannel.invokeMethod(

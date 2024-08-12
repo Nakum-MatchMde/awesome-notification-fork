@@ -1,10 +1,14 @@
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_example/main_complete.dart';
+import 'package:awesome_notifications_example/notifications/notifications_util.dart';
 import 'package:awesome_notifications_example/routes/routes.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart' if (dart.library.html)
 'package:awesome_notifications_example/utils/common_web_functions.dart';
+import 'package:awesome_notifications_example/utils/common_functions.dart'
+    if (dart.library.html) 'package:awesome_notifications_example/utils/common_web_functions.dart';
 import 'package:awesome_notifications_example/utils/media_player_central.dart';
 import 'package:awesome_notifications_example/notifications/notifications_util.dart';
 
@@ -345,6 +349,8 @@ class NotificationsController {
   }
 
 
+    await onActionReceivedMethodImpl(receivedAction);
+  }
 
   static Future<void> onActionReceivedMethodImpl(
       ReceivedAction receivedAction) async {
@@ -506,7 +512,7 @@ class NotificationsController {
     ReceivedAction? receivedAction = await AwesomeNotifications()
         .getInitialNotificationAction();
 
-    if(receivedAction?.channelKey == 'call_channel') {
+    if (receivedAction?.channelKey == 'call_channel') {
       initialCallAction = receivedAction;
     }
   }

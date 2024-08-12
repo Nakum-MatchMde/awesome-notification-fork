@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_notifications_example/common_widgets/led_light.dart';
 import 'package:awesome_notifications_example/common_widgets/simple_button.dart';
+import 'package:flutter/material.dart';
 
 class ServiceControlPanel extends StatelessWidget {
   final String title;
@@ -12,15 +13,15 @@ class ServiceControlPanel extends StatelessWidget {
     this.title,
     this.statusControl,
     this.themeData, {
-    Key? key,
+    super.key,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
 
-    return Container(
+    return SizedBox(
       width: mediaQueryData.size.width * 0.4,
       child: Column(
         children: <Widget>[
@@ -29,7 +30,7 @@ class ServiceControlPanel extends StatelessWidget {
             child: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                  style: TextStyle(color: Colors.black87),
+                  style: const TextStyle(color: Colors.black87),
                   text: '$title status:\n',
                   children: [
                     TextSpan(
@@ -37,8 +38,8 @@ class ServiceControlPanel extends StatelessWidget {
                             color: statusControl
                                 ? Colors.green
                                 : Colors.redAccent),
-                        text: (statusControl ? 'Available' : 'Unavailable') +
-                            '\n'),
+                        text:
+                            '${statusControl ? 'Available' : 'Unavailable'}\n'),
                     WidgetSpan(child: LedLight(statusControl))
                   ]),
             ),

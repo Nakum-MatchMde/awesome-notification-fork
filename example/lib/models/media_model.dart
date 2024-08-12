@@ -10,7 +10,7 @@ class CloseCaptionElement {
 }
 
 class MediaModel {
-  String _diskImagePath;
+  final String _diskImagePath;
 
   bool isPlaying;
 

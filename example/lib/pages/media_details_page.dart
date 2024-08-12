@@ -1,7 +1,10 @@
 import 'dart:math';
 
+import 'package:awesome_notifications_example/models/media_model.dart';
+import 'package:awesome_notifications_example/notifications/notifications_util.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart';
+import 'package:awesome_notifications_example/utils/media_player_central.dart';
 import 'package:awesome_notifications_example/notifications/notifications_util.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -15,10 +18,10 @@ class MediaDetailsPage extends StatefulWidget {
   const MediaDetailsPage({super.key});
 
   @override
-  MediaDetailsPageState createState() => MediaDetailsPageState();
+  _MediaDetailsPageState createState() => _MediaDetailsPageState();
 }
 
-class MediaDetailsPageState extends State<MediaDetailsPage> {
+class _MediaDetailsPageState extends State<MediaDetailsPage> {
   ImageProvider? diskImage;
 
   bool isDragging = false;
@@ -36,7 +39,7 @@ class MediaDetailsPageState extends State<MediaDetailsPage> {
 
   @override
   void initState() {
-    if(!MediaPlayerCentral.hasAnyMedia){
+    if (!MediaPlayerCentral.hasAnyMedia) {
       MediaPlayerCentral.addAll([
         MediaModel(
             diskImagePath: 'asset://assets/images/rock-disc.jpg',
@@ -210,7 +213,7 @@ class MediaDetailsPageState extends State<MediaDetailsPage> {
     isLighten =
         // ignore: deprecated_member_use
         isLighten ?? themeData.brightness == Brightness.light;
-    mainColor = mainColor ?? themeData.colorScheme.background;
+    mainColor = mainColor ?? themeData.colorScheme.surface;
     contrastColor = contrastColor ?? (isLighten! ? Colors.black : Colors.white);
 
     double maxSize = max(mediaQueryData.size.width, mediaQueryData.size.height);
@@ -228,12 +231,12 @@ class MediaDetailsPageState extends State<MediaDetailsPage> {
             textTheme: Theme.of(context)
                 .textTheme
                 .copyWith(
-                  displayMedium:
-                      const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  displaySmall:
-                      const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  titleLarge:
-                      const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  displayMedium: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold),
+                  displaySmall: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w400),
+                  titleLarge: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w400),
                 )
                 .apply(
                   bodyColor: contrastColor,
@@ -255,7 +258,8 @@ class MediaDetailsPageState extends State<MediaDetailsPage> {
                 disabledInactiveTrackColor: contrastColor?.withOpacity(0.25),
                 disabledThumbColor: contrastColor?.withOpacity(0.25),
                 thumbColor: contrastColor,
-                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15)),
+                thumbShape:
+                    const RoundSliderThumbShape(enabledThumbRadius: 15)),
             canvasColor: mainColor),
         child: Builder(builder: (BuildContext context) {
           return Scaffold(
@@ -465,6 +469,7 @@ class MediaDetailsPageState extends State<MediaDetailsPage> {
                   },
                   onChangeEnd: (value) {
                     isDragging = false;
+                    isDraggin = false;
                     setState(() {
                       MediaPlayerCentral.goTo(durationPlayed!);
                     });

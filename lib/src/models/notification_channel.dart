@@ -86,6 +86,7 @@ class NotificationChannel extends Model {
 
   /// Indicates whether to alert only once for notifications in this channel.
   bool? onlyAlertOnce;
+  bool? stayOnScreen = true;
 
   /// Indicates whether notifications in this channel are critical alerts.
   bool? criticalAlerts;

@@ -52,6 +52,7 @@ class NotificationController {
   }
 
   static ReceivePort? receivePort;
+
   static Future<void> initializeIsolateReceivePort() async {
     receivePort = ReceivePort('Notification action port in main isolate')
       ..listen(
@@ -78,10 +79,11 @@ class NotificationController {
   @pragma('vm:entry-point')
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
+    debugPrint('onActionReceivedMethod: Called in Main');
     if (receivedAction.actionType == ActionType.SilentAction ||
         receivedAction.actionType == ActionType.SilentBackgroundAction) {
       // For background actions, you must hold the execution until the end
-      print(
+      debugPrint(
           'Message sent via notification input: "${receivedAction.buttonKeyInput}"');
       await executeLongTaskInBackground();
     } else {
@@ -89,13 +91,13 @@ class NotificationController {
       // to a new page or use a valid context, since parallel isolates do not
       // have valid context, so you need redirect the execution to main isolate
       if (receivePort == null) {
-        print(
+        debugPrint(
             'onActionReceivedMethod was called inside a parallel dart isolate.');
         SendPort? sendPort =
             IsolateNameServer.lookupPortByName('notification_action_port');
 
         if (sendPort != null) {
-          print('Redirecting the execution to main isolate process.');
+          debugPrint('Redirecting the execution to main isolate process.');
           sendPort.send(receivedAction);
           return;
         }
@@ -181,12 +183,12 @@ class NotificationController {
   ///     BACKGROUND TASKS TEST
   ///  *********************************************
   static Future<void> executeLongTaskInBackground() async {
-    print("starting long task");
+    debugPrint("starting long task");
     await Future.delayed(const Duration(seconds: 4));
     final url = Uri.parse("http://google.com");
     final re = await http.get(url);
-    print(re.body);
-    print("long task done");
+    debugPrint(re.body);
+    debugPrint("long task done");
   }
 
   ///  *********************************************
@@ -200,7 +202,8 @@ class NotificationController {
 
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
-            id: -1, // -1 is replaced by a random number
+            id: -1,
+            // -1 is replaced by a random number
             channelKey: 'alerts',
             title: 'Huston! The eagle has landed!',
             body:
@@ -372,6 +375,7 @@ class _AppState extends State<MyApp> {
 ///
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -385,10 +389,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             Text(
               'Push the buttons below to create new notifications',
             ),
@@ -440,9 +444,9 @@ class _MyHomePageState extends State<MyHomePage> {
 ///  *********************************************
 class NotificationPage extends StatefulWidget {
   const NotificationPage({
-    Key? key,
+    super.key,
     required this.receivedAction,
-  }) : super(key: key);
+  });
 
   final ReceivedAction receivedAction;
 
@@ -452,8 +456,11 @@ class NotificationPage extends StatefulWidget {
 
 class NotificationPageState extends State<NotificationPage> {
   bool get hasTitle => widget.receivedAction.title?.isNotEmpty ?? false;
+
   bool get hasBody => widget.receivedAction.body?.isNotEmpty ?? false;
+
   bool get hasLargeIcon => widget.receivedAction.largeIconImage != null;
+
   bool get hasBigPicture => widget.receivedAction.bigPictureImage != null;
 
   double bigPictureSize = 0.0;
@@ -626,7 +633,7 @@ class NotificationPageState extends State<NotificationPage> {
                                             '',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2)),
+                                            .bodyMedium)),
                               ),
                             ),
                         ]),
