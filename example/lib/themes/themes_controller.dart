@@ -11,10 +11,7 @@ class ThemesController {
 
       primaryColor: App.mainColor,
       // ignore: deprecated_member_use
-      colorScheme: const ColorScheme.light().copyWith(
-        secondary: Colors.blueGrey,
-        surface: Colors.blueGrey.shade400,
-      ),
+      colorScheme: const ColorScheme.light().copyWith(),
       canvasColor: Colors.white,
       focusColor: Colors.blueAccent,
       disabledColor: Colors.grey,
